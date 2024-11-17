@@ -8,7 +8,9 @@ Place the PDFs inside the `doc/` folder, run the `bin/frequency-table.R`. This g
 
 Example wordcloud:
 
-![DBP-mouse](img/wordcloud.png){ width=50% }
+<img src="img/wordcloud.png" width="50%" />
+
+<!-- ![DBP-mouse](img/wordcloud.png){ width=50% } -->
 
 ## File structure
 
