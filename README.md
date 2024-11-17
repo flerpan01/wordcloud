@@ -2,7 +2,13 @@
 
 This repository creates a weighted list ([wordcloud](https://en.wikipedia.org/wiki/Tag_cloud)) from pdf-files. I use this for creating wordclouds based on PhD theses.
 
-![DBP-mouse](img/wordcloud.png)
+## Generate weighted list
+
+Place the PDFs inside the `doc/` folder, run the `bin/frequency-table.R`. This generates `data/wordcloud.csv`. Use this file to create a wordcloud at www.wordclouds.com
+
+Example wordcloud:
+
+![DBP-mouse](img/wordcloud.png){ width=50% }
 
 ## File structure
 
@@ -14,7 +20,7 @@ proj/
 |-- data/
 |-- img/
 |   `-- wordcloud.png
-`-- README.d
+`-- README.md
 ```
 
 <!--

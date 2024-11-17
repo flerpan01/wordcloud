@@ -6,7 +6,7 @@ library(tm)
 
 # import PDFs
 files <- list.files(
-  "data/denise",
+  "doc",
   pattern = "*.pdf$",
   recursive = TRUE,
   full.names = TRUE
