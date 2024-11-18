@@ -1,10 +1,24 @@
 # README
 
-This repository creates a weighted list ([wordcloud](https://en.wikipedia.org/wiki/Tag_cloud)) from pdf-files. I use this for creating wordclouds based on PhD theses.
+This repository generates a weighted list ([wordcloud](https://en.wikipedia.org/wiki/Tag_cloud)) from text embedded in PDFs. The frequency of words are presented with two columns, `weight` and `word`:
 
-## Generate weighted list
+```
+# table format
 
-Place the PDFs inside the `doc/` folder, run the `bin/frequency-table.R`. This generates `data/wordcloud.csv`. Use this file to create a wordcloud at www.wordclouds.com
+  weight     word
+1    466  disease
+2    370   effect
+3    319  mixture
+4    238     cell
+5    226   cancer
+6    216 chemical
+```
+
+I use these weighted lists to creating wordclouds from scientific papers. Hence, the pruning of words reflect this (removal of words found in references lists etc)
+
+## Generate a weighted list
+
+Place the PDFs inside the `doc/` folder, run `bin/frequency-table.R`. This generates `data/wordcloud.csv`. Use this file to create a wordcloud at www.wordclouds.com
 
 Example wordcloud:
 
@@ -19,11 +33,16 @@ proj/
 |-- bin/
 |   `-- frequency-table.R
 |-- doc/
+|   `--      # # # PLACE THE PDFs INSIDE HERE # # #
 |-- data/
+|   `--      # # # wordcloud.csv will be generated here # # #
 |-- img/
 |   `-- wordcloud.png
 `-- README.md
 ```
+
+
+
 
 <!--
 
