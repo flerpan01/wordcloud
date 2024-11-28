@@ -27,10 +27,10 @@ fig <- wordcloud2(
 )
 
 # export
-saveWidget(fig, "fig.html", selfcontained = TRUE)
+saveWidget(fig, "tmp/fig.html", selfcontained = TRUE)
 # and in png or pdf
-webshot("fig.html", "fig.pdf", delay = 5, vwidth = 2000, vheight = 700)
-webshot("fig.html", "fig.png", delay = 5, vwidth = 2000, vheight = 700)
+webshot("tmp/fig.html", "img/fig.pdf", delay = 5, vwidth = 2000, vheight = 700)
+webshot("tmp/fig.html", "img/fig.png", delay = 5, vwidth = 2000, vheight = 700)
 
 cat(paste0(
   "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n",

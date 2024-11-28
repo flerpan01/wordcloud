@@ -3,5 +3,8 @@
 data/
 doc/
 img/
+shapes/
+tmp/
 
+*.html
 *.log
