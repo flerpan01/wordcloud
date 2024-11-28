@@ -79,7 +79,7 @@ dat$word <- sub("pc1", "PC1", dat$word)
 dat$word <- sub("pc2", "PC2", dat$word)
 dat$word <- sub("pcbs", "PCBs", dat$word)
 dat$word <- sub("vm7luc4e2", "VM7Luc4E2", dat$word)
-dat$word <- sub("oecd", "OCED", dat$word)
+dat$word <- sub("oecd", "OECD", dat$word)
 dat$word <- sub("pcb", "PCB", dat$word)
 dat$word <- sub("ddt", "DDT", dat$word)
 
