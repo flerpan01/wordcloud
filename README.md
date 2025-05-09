@@ -18,9 +18,19 @@ I use these weighted lists to creating wordclouds from scientific papers. Hence,
 
 ## Generate a weighted list
 
-Place the PDFs inside the `doc/` folder, run `bin/frequency-table.R`. This generates `data/wordcloud.csv`. Use this file to create a wordcloud at www.wordclouds.com
+Place the PDF(s) inside `doc/`, run `bin/frequency-table.R` with an argument (if multiple projects are inside `doc/`). This generates a wordcloud csv inside `data/`. Use this file to create a wordcloud at www.wordclouds.com. 
 
-Example wordcloud:
+```sh
+# example only generate wordcloud for flerpan.pdf
+doc/
+├── flerpan.pdf
+└── tony.pdf
+
+ARG=flerpan
+Rscript bin/frequency-table.R $ARG
+```
+
+## Example wordcloud
 
 <img src="img/wordcloud-mouse.png" width="300" /> <img src="img/wordcloud-teacup.png" width="300" />
 
@@ -28,20 +38,14 @@ Example wordcloud:
 
 ## File structure
 
-```
+```sh
 proj/
-|-- bin/
-|   `-- frequency-table.R
-|-- doc/
-|   `--      # # # PLACE THE PDFs INSIDE HERE # # #
-|-- data/
-|   `--      # # # wordcloud.csv will be generated here # # #
-|-- img/
-|   `-- wordcloud.png
-`-- README.md
+├── bin/
+│   └── frequency-table.R
+├── doc/                  # # # place the PDFs here # # #   
+├── data/                 # # # wordcloud.csv will be generated here # # #
+└── README.md
 ```
-
-
 
 
 <!--
