@@ -1,16 +1,27 @@
 #!/usr/bin/env Rscript
 
-library(pdftools)
-library(stringr)
-library(tm)
+arg <- commandArgs(trailingOnly=TRUE)
+
+cat(paste(
+  "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n",
+  "Looking for files containing:\t", arg,
+  "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
+))
+
+suppressPackageStartupMessages({
+  library(pdftools)
+  library(stringr)
+  library(tm)
+})
 
 # import PDFs
 files <- list.files(
   "doc",
-  pattern = "*.pdf$",
   recursive = TRUE,
   full.names = TRUE
 )
+
+files <- grep(arg, tolower(files), value = TRUE)
 
 # Convert to text
 textlist <- unlist(lapply(files, pdf_text))
@@ -56,13 +67,13 @@ dat <- dat[-rows, ]
 
 # Remove random words
 badwords <- c(
-  "using", "use", "found",
-  "based", "can",
+  "using", "use", "used", "found",
+  "based", "can", "och", "may",
   "also", "non", "van", "paper",
   "figure", "fig", "table", "page",
   
   # specific words (occurs in Reference list)
-  "toxicol", "biol", "sci", "vargas", "kortenkamp", "zimmer", "verhaegen", "som", "pierozan", "lundgren", "sweden", "strand", "environ", "karlsson", "usa", "stockholm", "martin"
+  "toxicol", "biol", "sci", "vargas", "kortenkamp", "zimmer", "verhaegen", "som", "pierozan", "lundgren", "sweden", "strand", "environ", "usa", "stockholm", "martin", "berg", "wang", "jin", "zhang"
 )
 
 dat <- subset(dat, !word %in% badwords)
@@ -86,19 +97,19 @@ dat$word <- sub("ddt", "DDT", dat$word)
 #highlightWords <- c("DBP", "gut", "microbiota", "toxicology")
 #out$freq[out$word %in% highlightWords] <- round(max(out$freq) * 3, 0)
 dat <- dat[order(dat$freq, decreasing = TRUE), ]
-
 dat <- data.frame(weight = dat$freq, word = dat$word)
-write.csv(dat, file = "data/wordcloud.csv", row.names = FALSE, quote = FALSE)
 
-cat(paste0(
-  "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n",
-  "./bin/frequency-table.R complete\n",
-  "./data/wordcloud.csv generated",
-  "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
+filename <- file.path("data", paste(arg, "wordcloud.csv", sep = "_"))
+
+write.csv(dat, file = filename, row.names = FALSE, quote = FALSE)
+
+cat(paste(
+  "\n~~ frequency-table.R complete ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n",
+  filename, " generated!\n\n",
+  "To make a nice wordcloud:\n",
+  " > go to https://www.wordclouds.com/\n",
+  " > click on 'Words' -> 'Import from CSV'\n",
+  " > play around with settings under 'Color', 'Mask', 'Font', 'Shape'\n",
+  " > to save, click on 'File' -> 'Save as image HD' (as PNG)",
+  "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
 ))
-
-
-#1. go to https://www.wordclouds.com/
-#2. click on "Word list" and choose "Import from CSV” 
-#3. play around with settings under “Color”, “Mask”, “Font”, “Shape”
-#4. to save, click on “File”, choose “Save as image HD” and pick PDF (exact)
